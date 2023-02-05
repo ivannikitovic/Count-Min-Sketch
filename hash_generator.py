@@ -1,4 +1,5 @@
 import random
+from typing import List
 
 class HashGenerator():
 
@@ -14,14 +15,14 @@ class HashGenerator():
             (e.g. for ASCII: p >= 128)
 
         k: integer
-            Input dimension. For strings, this would be the max
+            Output dimension. For strings, this would be the max
             input string length. Shorter strings are padded.
 
         """
         self.p = p
         self.k = k
 
-    def generate_hash_function(self) -> None:
+    def generate_hash_function(self) -> List[int]:
         """
         Generates hash function as follows:
             select k integers {z1, ..., zk} by U.A.R. sampling 
@@ -29,21 +30,20 @@ class HashGenerator():
 
         """
         self.z = [random.randint(0, self.p - 1) for i in range(self.k)]
+        return self.z
 
     def hash(self, s: str) -> int:
         """
         Hashes input string as follows:
-        h(a1, ..., ak) = (SUM_overall zi * ai) mod p
+        h(a1, ..., ak) = (SUM_overall_zs zi * ai) mod p
 
         Parameters
         ----------
         s: string
-            Must be less than self.k.
+            Input string to be hashed.
 
         """
-        assert(len(s) < self.k)
-
-        s = s.rjust(self.k, " ")
+        s = s.ljust(self.k, " ")
         emb = [ord(ch) for ch in s]
 
-        return sum(map(lambda x: x[0] * x[1], zip(self.z, emb))) % self.p
+        return sum(map(lambda x: x[0] * x[1], zip(self.z, emb[:self.k]))) % self.p
