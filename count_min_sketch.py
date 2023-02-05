@@ -1,7 +1,7 @@
 from typing import List
 from hash_generator import HashGenerator
 
-class CountMin():
+class CountMinSketch():
 
     def __init__(self, K: int, N: int, i_dim: int = 128, i_len: int = 32) -> None:
         """

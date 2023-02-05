@@ -1,6 +1,6 @@
-from count_min import CountMin
+from count_min_sketch import CountMinSketch
 
-cms = CountMin(50, 3) # 50 * 3
+cms = CountMinSketch(50, 3) # 50 * 3
 
 test1 = []
 
