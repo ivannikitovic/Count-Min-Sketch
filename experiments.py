@@ -1,16 +1,15 @@
 from count_min import CountMin
 
-cms = CountMin(32, 37, 10)
+cms = CountMin(50, 3) # 50 * 3
 
-test = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rutrum arcu felis, nec sodales diam porttitor ut. In feugiat aliquet leo, vitae ornare odio commodo aliquet. Aliquam sagittis viverra tincidunt. Donec ut cursus est. Morbi vulputate risus felis, id ultrices elit semper in. Fusce ultrices libero quis leo suscipit dapibus. Maecenas pellentesque porta fringilla. Aliquam varius at erat et viverra. Nam ultricies lorem id purus vestibulum, quis finibus lorem convallis. Duis ut finibus neque. Nunc id sem faucibus, tristique velit eu, iaculis libero. Pellentesque egestas dui tortor, ac lacinia eros posuere vel. Sed convallis tortor a sem pellentesque, nec sagittis enim condimentum. Suspendisse congue semper venenatis. Cras pellentesque massa vitae purus varius auctor.\
-Aliquam posuere sem vel lectus iaculis dignissim. Duis malesuada urna ut magna scelerisque, in efficitur libero egestas. Pellentesque orci magna, vehicula sit amet arcu nec, feugiat egestas ex. Ut varius sodales nibh a aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque sagittis scelerisque sollicitudin. Proin dictum at nulla nec vehicula. Sed dictum arcu et pharetra placerat. Fusce posuere placerat semper. Phasellus auctor viverra odio, ac lacinia nunc pellentesque sit amet. Donec pulvinar nulla id diam varius, consequat accumsan nisl tincidunt. Morbi luctus ipsum vel suscipit ullamcorper. Donec aliquet leo dui, sed feugiat ex gravida non. Vestibulum eget tincidunt ex. Donec sollicitudin scelerisque maximus. Nam vehicula sapien in libero rhoncus, id sodales tortor consectetur.\
-Curabitur dui mauris, gravida rutrum erat eu, faucibus suscipit lectus. In sit amet scelerisque nulla, nec congue mi. Sed interdum mattis suscipit. Sed blandit dui vel tempor tempus. Nulla ac enim orci. Nullam eu felis id lectus rutrum accumsan. Nunc porttitor arcu non velit viverra, eget molestie nisl tincidunt. Duis a pellentesque ligula, ut posuere eros. Donec consectetur metus lacus, sit amet porttitor quam hendrerit et. Donec sit amet vulputate nunc.\
-Curabitur sit amet leo quis orci mollis facilisis. Donec varius, nunc sit amet eleifend tempor, tortor augue lacinia ipsum, vel malesuada sem nisl quis magna. Curabitur in tristique massa. Maecenas in ornare diam. Mauris a lectus vulputate, laoreet est non, dictum libero. Phasellus bibendum ultricies nulla, eget rhoncus nibh ornare vel. Mauris non dapibus ligula. Aenean porta sollicitudin finibus.\
-Sed tempor nisl at diam dictum lobortis. Quisque sit amet nibh risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis cursus sed risus ut tincidunt. Vivamus et iaculis tellus. Donec posuere ullamcorper lacus vitae maximus. Pellentesque posuere, lectus et varius elementum, dolor lectus accumsan ante, quis pretium lacus lectus ultricies ante. Mauris facilisis tincidunt arcu ac vulputate. Proin quis mi ipsum. Nunc eget ullamcorper eros. Praesent pulvinar ullamcorper lacus. Nullam a sollicitudin felis, sed interdum tortor. Nunc at tellus convallis, rutrum est in, vehicula augue.\
-In quis purus tellus. Quisque volutpat ipsum elit, at vestibulum arcu vehicula id. Praesent eget purus massa. Maecenas mauris dolor, dapibus sit amet nulla ut, varius semper metus. Maecenas at vehicula purus, id pulvinar enim. Curabitur quis tristique ipsum. In hac habitasse platea dictumst. Maecenas eleifend.".split()
+test1 = []
 
-cms.process_stream(test)
+for i in range(100):
+    test1 += i * [f"word{i}"]
 
-cms.get_freq(test)
 
-print(cms.frequencies["ipsum"])
+cms.process_stream(test1)
+
+cms.get_freq(test1)
+
+print(cms.frequencies)
