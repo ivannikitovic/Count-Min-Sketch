@@ -1,26 +1,54 @@
+from math import sqrt
 import random
 from typing import List
 
 class HashGenerator():
 
-    def __init__(self, p: int, k: int) -> None:
+    def __init__(self, n: int, k:int, m: int, p: int = None) -> None:
         """ 
         Initializes Hash class.
 
         Parameters
         ----------
-        p: integer
-            Choose a primer integer p such that p >= n,
-            where n is the range of possible inputs in universe.
-            (e.g. for ASCII: p >= 128)
-
+        n: integer
+            Input range.
+            (e.g. for ASCII: n == 128)
+        
         k: integer
-            Output dimension. For strings, this would be the max
+            Input length. For strings, this would be the max
             input string length. Shorter strings are padded.
 
+        m: integer
+            Output dimension.
+            ([n] -> [m])
+
+        p: integer, optional
+            Prime number such that p > n > m.
+
         """
-        self.p = p
+        self.n = n
         self.k = k
+        self.m = m
+        self.p = p
+
+        if not self.p:
+            self.find_prime()
+
+    def find_prime(self) -> None:
+        """
+        Starting from self.n, find the next larger prime number.
+
+        """
+        curr = self.n
+        while not self.p:
+            upper = int(sqrt(curr))
+            for i in range(2, upper + 1):
+                if curr % i == 0:
+                    break
+                if i == upper:
+                    self.p = curr
+            
+            curr += 1
 
     def generate_hash_function(self) -> List[int]:
         """
@@ -46,4 +74,6 @@ class HashGenerator():
         s = s.ljust(self.k, " ")
         emb = [ord(ch) for ch in s]
 
-        return sum(map(lambda x: x[0] * x[1], zip(self.z, emb[:self.k]))) % self.p
+        z_a = sum(map(lambda x: x[0] * x[1], zip(self.z, emb[:self.k])))
+
+        return  (z_a % self.p) % self.m
