@@ -39,7 +39,8 @@ class HashGenerator():
         Starting from self.n, find the next larger prime number.
 
         """
-        curr = self.n
+        curr = max(self.n, self.m)
+        
         while not self.p:
             upper = int(sqrt(curr))
             for i in range(2, upper + 1):
