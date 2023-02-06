@@ -24,6 +24,7 @@ print(f"Number of unique words: {len(actual_freq)}")
 print(f"Number of words, total: {N}")
 print()
 
+# sigma = 0.005
 sigma = 0.005
 w = ceil(math.e / sigma) # 544
 print(f"width: {w}")
@@ -37,9 +38,11 @@ print()
 # estimate less than sigma * N with probability 1 - delta:
 # a_pred < a_act + 129.23 with probability 0.95
 
-err = sigma * N
-print(f"Markov In.: error less than {2 * N / w} with probability: 0.5")
-print(f"CMS Theory: error less than {err} with probability: {1 - delta}")
+err1 = 2 * N / w
+err2 = sigma * N
+
+print(f"Markov In.: error less than {err1} with probability: 0.5")
+print(f"CMS Theory: error less than {err2} with probability: {1 - delta}")
 print()
 
 cms_shakespeare = CountMinSketch(w, h) # 544 * 3
@@ -61,8 +64,11 @@ sorted_freqs = sorted(error_freq.items(), key=lambda x: x[0])
 
 X, Y = list(zip(*sorted_freqs))
 
-acc = sum([pair[1] for pair in sorted_freqs if pair[0]<err])/sum(Y)
-print(f"actual error less than {err} with probability: {acc}")
+acc1 = sum([pair[1] for pair in sorted_freqs if pair[0]<err1])/sum(Y)
+print(f"actual error less than {err1} with probability: {acc1}")
+
+acc2 = sum([pair[1] for pair in sorted_freqs if pair[0]<err2])/sum(Y)
+print(f"actual error less than {err2} with probability: {acc2}")
 
 plt.scatter(X, Y)
 plt.show()
