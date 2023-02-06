@@ -25,8 +25,8 @@ print(f"Number of words, total: {N}")
 print()
 
 # sigma = 0.005
-sigma = 0.005
-w = ceil(math.e / sigma) # 544
+sigma = 0.01
+w = ceil(math.e / sigma) # 272
 print(f"width: {w}")
 
 delta = 0.05
@@ -45,7 +45,7 @@ print(f"Markov In.: error less than {err1} with probability: 0.5")
 print(f"CMS Theory: error less than {err2} with probability: {1 - delta}")
 print()
 
-cms_shakespeare = CountMinSketch(w, h) # 544 * 3
+cms_shakespeare = CountMinSketch(w, h) # 272 * 3
 cms_shakespeare.process_stream(corpus)
 cms_shakespeare.get_freq(corpus)
 
