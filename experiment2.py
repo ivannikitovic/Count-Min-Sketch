@@ -64,6 +64,10 @@ sorted_freqs = sorted(error_freq.items(), key=lambda x: x[0])
 
 X, Y = list(zip(*sorted_freqs))
 
+avg_error = sum(Y) / len(Y)
+print(f"average error: {avg_error}")
+print()
+
 acc1 = sum([pair[1] for pair in sorted_freqs if pair[0]<err1])/sum(Y)
 print(f"actual error less than {err1} with probability: {acc1}")
 
