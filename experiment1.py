@@ -1,5 +1,7 @@
 # Experiment 1 (small)
 
+# Question 2
+
 from count_min_sketch import CountMinSketch
 
 cms = CountMinSketch(50, 3) # 50 * 3
