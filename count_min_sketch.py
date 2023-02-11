@@ -10,7 +10,7 @@ class CountMinSketch():
         Parameters
         ----------
         K: integer
-            Number of buckets (width, prime number).
+            Number of buckets (width).
 
         N: integer
             Number of hash functions (height).
